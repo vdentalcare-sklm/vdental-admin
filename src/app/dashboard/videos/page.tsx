@@ -16,8 +16,8 @@ import {
   Check,
   Star,
   Video,
-  Youtube,
 } from "lucide-react";
+import { FaYoutube } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 
 interface VideoItem {
@@ -341,7 +341,7 @@ export default function VideosPage() {
           {nonFeatured.length > 0 && (
             <div className="space-y-3">
               <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-2">
-                <Youtube className="w-4 h-4 text-red-400" />
+                  <FaYoutube className="w-4 h-4 text-red-400" />
                 Other Videos ({nonFeatured.length})
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
