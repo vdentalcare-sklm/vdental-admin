@@ -22,6 +22,14 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+function extractMapSrc(input: string): string {
+  // If it looks like an iframe tag, extract the src URL
+  const match = input.match(/src="([^"]+)"/);
+  if (match) return match[1];
+  // Otherwise assume it's already a bare URL
+  return input.trim();
+}
+
 interface Branch {
   id: number;
   name: string;
@@ -88,7 +96,7 @@ export default function BranchesPage() {
         method: "POST",
         body: JSON.stringify({
           ...addForm,
-          map_src:       addForm.map_src.trim() || null,
+        map_src: extractMapSrc(addForm.map_src) || null,
           display_order: Number(addForm.display_order),
         }),
       });
@@ -126,7 +134,7 @@ export default function BranchesPage() {
         body: JSON.stringify({
           id,
           ...editForm,
-          map_src:       editForm.map_src.trim() || null,
+         map_src: extractMapSrc(editForm.map_src) || null,
           display_order: Number(editForm.display_order),
         }),
       });
@@ -289,11 +297,10 @@ export default function BranchesPage() {
                   onChange={(e) =>
                     setAddForm((p) => ({ ...p, map_src: e.target.value }))
                   }
-                  placeholder="Paste the src URL from Google Maps → Share → Embed a map"
+                  placeholder="Paste the full iframe code or just the URL from Google Maps → Share → Embed a map"
                 />
-                <p className="text-xs text-slate-400">
-                  Go to Google Maps → Share → Embed a map → copy only the URL
-                  inside src="..."
+<p className="text-xs text-slate-400">
+                  Paste the full iframe code from Google Maps → Share → Embed a map, or just the URL.
                 </p>
               </div>
 
@@ -446,7 +453,7 @@ export default function BranchesPage() {
                             map_src: e.target.value,
                           }))
                         }
-                        placeholder="Paste the src URL from Google Maps embed"
+              placeholder="Paste the full iframe code or just the URL from Google Maps → Share → Embed a map"
                       />
                     </div>
 
