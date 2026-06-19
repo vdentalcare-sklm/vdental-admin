@@ -156,14 +156,18 @@ export default function BookingsPage() {
         <span className="text-slate-600">{item.patient_phone}</span>
       ),
     },
-    {
+{
       header: "Branch",
       accessorKey: "branch_name",
       cell: (item) => (
-        <span className="text-slate-600 flex items-center gap-1.5">
-          <Building2 className="w-3.5 h-3.5 text-slate-400" />
-          {item.branch_name}
-        </span>
+        item.branch_name ? (
+          <span className="text-slate-600 flex items-center gap-1.5">
+            <Building2 className="w-3.5 h-3.5 text-slate-400" />
+            {item.branch_name}
+          </span>
+        ) : (
+          <span className="text-slate-400 italic text-sm">Not selected yet</span>
+        )
       ),
     },
     {
@@ -273,9 +277,9 @@ export default function BookingsPage() {
                     <Phone className="w-3.5 h-3.5 mr-1.5" />
                     {item.patient_phone}
                   </div>
-                  <div className="flex items-center text-sm text-slate-500 mt-1">
+<div className="flex items-center text-sm text-slate-500 mt-1">
                     <Building2 className="w-3.5 h-3.5 mr-1.5" />
-                    {item.branch_name}
+                    {item.branch_name ?? "Not selected yet"}
                   </div>
                 </div>
                 <StatusBadge status={item.status} />
@@ -330,13 +334,13 @@ export default function BookingsPage() {
               </div>
             </div>
 
-            {/* Branch */}
+{/* Branch */}
             <div className="flex items-center gap-2 p-3 bg-slate-50 rounded-xl border border-slate-100">
               <Building2 className="w-4 h-4 text-primary shrink-0" />
               <div>
                 <p className="text-xs text-slate-500">Branch</p>
                 <p className="font-medium text-slate-900 text-sm">
-                  {selectedBooking.branch_name}
+                  {selectedBooking.branch_name ?? "Not selected yet"}
                 </p>
               </div>
             </div>
