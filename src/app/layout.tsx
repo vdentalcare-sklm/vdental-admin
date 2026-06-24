@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Day & Night Dental Clinic Admin",
+  title: "V Dental Hospitals Admin",
   description: "Clinic Management Portal",
 };
 
